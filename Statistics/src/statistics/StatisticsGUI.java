@@ -18,7 +18,7 @@ import java.awt.List;
 public class StatisticsGUI {
 
 	private JFrame frame;
-	private ArrayList<Double> arrayOfNums;
+	private ArrayList<Double> arrayOfNums = new ArrayList<Double>();
 
 	/**
 	 * Launch the application.
@@ -97,7 +97,7 @@ public class StatisticsGUI {
 		btnAddNums.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				arrayOfNums = new ArrayList<Double>();
+				ArrayList<Double> currentInput = new ArrayList<Double>();
 				
 				String test1 = JOptionPane.showInputDialog("Enter numbers here: ");
 				
@@ -110,6 +110,7 @@ public class StatisticsGUI {
 					{
 						try {
 							arrayOfNums.add(Double.parseDouble(numberLine[i]));
+							currentInput.add(Double.parseDouble(numberLine[i]));
 						}
 						
 						catch (Exception error) {
@@ -120,24 +121,25 @@ public class StatisticsGUI {
 					}
 				
 					Collections.sort(arrayOfNums);
+					Collections.sort(currentInput);
 				
 					String numberDisplayText = "";
 				
-					for (int i = 0; i < arrayOfNums.size(); i++)
+					for (int i = 0; i < currentInput.size(); i++)
 					{	
 						int doubleConvertedToInt;
 						
 						// If whole number
-						if (arrayOfNums.get(i)%1 == 0)
+						if (currentInput.get(i)%1 == 0)
 						{
-							double doubleToConvert = arrayOfNums.get(i);
+							double doubleToConvert = currentInput.get(i);
 							doubleConvertedToInt = (int)doubleToConvert;
 							numberDisplayText = String.valueOf(doubleConvertedToInt) + "\n";
 							numberDisplay.add(numberDisplayText);
 						}
 						else
 						{
-							numberDisplayText = String.valueOf(arrayOfNums.get(i)) + "\n";
+							numberDisplayText = String.valueOf(currentInput.get(i)) + "\n";
 							numberDisplay.add(numberDisplayText);
 						}
 					}
