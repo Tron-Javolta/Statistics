@@ -2,29 +2,39 @@ package statistics;
 
 import java.util.*;
 
+/**
+ * 
+ * @author Nicholas Souder
+ * 
+ * Application that helps in solving various statistics problems.
+ *
+ */
 public class StatisticsSolver {
 
 	public static void main(String[] args)
 	{
 	
 		Scanner keyboard = new Scanner(System.in);
-	
+		
+		// User inputs numbers into this arraylist.
 		ArrayList<Double> statsNumbers = new ArrayList<>();
 	
-	
-		int sentinelValue = -1;
-		double value = 0;
+		
+		int sentinelValue = -1;	// Stop value
+		double value = 0;		// Initialize value input
 
 		
-		// Get values for the array of numbers
+		// Get values for the array of numbers while the input isn't -1
 		while (true)
 		{
 			System.out.print("Insert number (input -1 to end): ");
 			value = keyboard.nextDouble();
 			
+			// If value is -1, stop getting input from user.
 			if (value == sentinelValue)
 				break;
 			
+			// Else, add user's input to the array.
 			else
 			{
 				statsNumbers.add(value);
@@ -32,25 +42,30 @@ public class StatisticsSolver {
 			}
 		}
 		
+		// Sort the array of numbers first for easier usage in certain methods.
 		Collections.sort(statsNumbers);
 		
-		
+		// Initialize stats solver object to start using methods to solve problems.
 		MultipleStatsSolver object = new MultipleStatsSolver(statsNumbers);
-		
-		//System.out.println("\nLower quarterly: " + object.lowerQuartile());
-		//System.out.println("Median: " + object.median());
-		//System.out.println("Upper quarterly: " + object.upperQuartile());
-		
+
+		// Get user's option selection with the array given.
 		userOptions(object);
 		
 		keyboard.close();
 	}
 	
+	/**
+	 * 
+	 * @param array User's array of numbers
+	 * 
+	 * Method that presents the options the user can select for figuring out a given problem.
+	 */
 	static void userOptions(MultipleStatsSolver array) {
 		Scanner keyboard = new Scanner(System.in);
 		
 		int selection = 0;
 		
+		// Present the selection of options for the user.
 		do
 		{
 			System.out.println("\n-------------------------");
@@ -61,6 +76,7 @@ public class StatisticsSolver {
 			
 			selection = keyboard.nextInt();
 			
+			// User selection
 			switch (selection)
 			{
 				// Exit case
@@ -68,51 +84,62 @@ public class StatisticsSolver {
 					System.out.println("Goodbye.\n");
 					break;
 				
-				// Min 
+				// Min case
 				case 1:
 					System.out.println("The min is: " + array.min() + "\n");
 					break;
-					
+				
+				// Max case
 				case 2:
 					System.out.println("The max is: " + array.max() + "\n");
 					break;
 					
+				// Lower quartile
 				case 3:
 					System.out.println("The lower quartile is: " + array.lowerQuartile() + "\n");
 					break;
 				
+				// Upper quartile
 				case 4:
 					System.out.println("The upper quartile is: " + array.upperQuartile()+ "\n");
 					break;
-					
+				
+				// Range
 				case 5:
 					System.out.println("The range is: " + array.range() + "\n");
 					break;
-					
+				
+				// Median
 				case 6:
 					System.out.println("The median is: " + array.median() + "\n");
 					break;
-					
+				
+				// Display the array
 				case 7:
 					array.printArray();
 					break;
-					
+				
+				// Display the array with commas
 				case 8:
 					array.printCommaArray();
 					break;
 					
+				// Standard Deviation
 				case 9:
 					System.out.println("The standard deviation is: " + array.standardDeviation() + "\n");
 					break;
 					
+				// Mean
 				case 10:
 					System.out.println("The mean is: " + array.mean() + "\n");
 					break;
 					
+				// Inter Quartile Range
 				case 11:
 					System.out.println(array.interQuartileRange());
 					break;
 				
+				// Bad selection
 				default:
 					System.out.println("Incorrect selection, please try again.\n");
 					break;

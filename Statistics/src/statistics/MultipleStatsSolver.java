@@ -4,13 +4,19 @@ import java.util.*;
 import java.lang.Math;
 
 /*
- * Array sorter (does arraylist have its own sort method??) IT DOES
+ * Main methods for the Statistics Solver.
  * 
- * quarterly solver
- * 
- * median finder
- * 
- * min and max finder
+ * includes:
+ * 	- min
+ *  - max
+ *  - lower quartile
+ *  - upper quartile
+ *  - median
+ *  - range
+ *  - print array
+ *  - mean
+ *  - standard deviation
+ *  - mode
  */
 
 
@@ -23,11 +29,12 @@ public class MultipleStatsSolver {
 		this.array = (ArrayList<Double>) array.clone();
 	}
 	
-	
+	// Minimum value of the array.
 	double min() {
 		return array.get(0);
 	}
 	
+	// Maximum value of the array.
 	double max() {
 		return array.get(array.size()-1);
 	}
@@ -38,11 +45,12 @@ public class MultipleStatsSolver {
 		int midpointIndex = (array.size() / 2);
 		
 		// if true find the lower half mean of the midpoint
+		// If the midpoint is even then you have to get the lower and upper midpoint to get the mean.
 		if (midpointIndex % 2 == 0)
 		{
 			double firstMidpoint = array.get((midpointIndex/2)-1);
 			double secondMidpoint = array.get((midpointIndex/2));
-			// mean = (array.get((midpointIndex/2)-1) + array.get((midpointIndex/2))) / 2;
+			
 			mean = (firstMidpoint + secondMidpoint) / 2;
 			return mean;
 		}
@@ -107,6 +115,7 @@ public class MultipleStatsSolver {
 		}
 	}
 	
+	// Middle of the array.
 	double median() {
 		int midpoint, secondMidpoint; // MIDPOINT INDEXES
 		
