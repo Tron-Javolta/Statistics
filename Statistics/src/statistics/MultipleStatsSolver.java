@@ -26,6 +26,7 @@ public class MultipleStatsSolver {
 	
 	public MultipleStatsSolver(List<Double> array) {
 	    this.array = new ArrayList<>(array);
+	    Collections.sort(this.array);
 	}
 	
 	// Minimum value of the array.
@@ -53,29 +54,15 @@ public class MultipleStatsSolver {
 	
 	// Middle of the array.
 	double median() {
-		int midpoint; // MIDPOINT INDEXES
-		
-		int size = array.size();
-		
-		// even number of indexes
-		if (size % 2 == 0)
-		{
-			midpoint = (size - 1) / 2; // middle index
-			
-			return (array.get(midpoint) + array.get(midpoint / 1)) / 2.0;
-		}
-		else
-		{
-			return array.get(size / 2);
-		}
-	}
+        int size = array.size();
+        return size % 2 == 0 ? (array.get(size / 2 - 1) + array.get(size / 2)) / 2 : array.get(size / 2);
+    }
 	
 	double range() {
 		return max() - min();
 	}
 	
 	void printArray() {
-
 		for (int i = 0; i < array.size(); i++)
 		{
 			if (i % 5 == 0)
@@ -98,12 +85,8 @@ public class MultipleStatsSolver {
 	}
 	
 	double mean() {
-	    double total = 0;
-	    for (Double value : array) {
-	        total += value;
-	    }
-	    return total / array.size();
-	}
+        return array.stream().mapToDouble(Double::doubleValue).average().orElse(0);
+    }
 	
 	double standardDeviation() {
 	    double mean = mean();
@@ -113,7 +96,7 @@ public class MultipleStatsSolver {
 	    return Math.sqrt(squaredDifferences / (array.size() - 1));
 	}
 	
-	double mode() {
-		return 0;
-	}
+	// double mode() {
+	// 	return 0;
+	// }
 }
